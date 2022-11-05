@@ -4,7 +4,6 @@ using Sistema_de_Vendas.br.com.sistema.MODEL;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,32 +11,32 @@ using System.Windows.Forms;
 
 namespace Sistema_de_Vendas.br.com.sistema.DAO
 {
-    public class ClienteDAO
+    public class FornecedorDAO
     {
         private MySqlConnection conexao;
 
-        public ClienteDAO()
+        public FornecedorDAO()
         {
             this.conexao = new ConnectionFactory().getconnection();
         }
 
+
         #region CadastrarCliente
         //Metodo Cadastrar Cliente
 
-        public void cadastrarCliente(Cliente obj)
+        public void cadastrarFornecedor(Fornecedor obj)
         {
             try
             {
                 //1 Passo - definir o cmd sql - Insert into
-                string sql = @"insert into tb_clientes (nome, rg, cpf, email, telefone, celular,cep, endereco, numero, complemento, bairro, cidade, estado)
-                                values(@nome, @rg, @cpf, @email, @telefone, @celular,@cep, @endereco, @numero, @complemento, @bairro, @cidade, @estado)";
+                string sql = @"insert into tb_fornecedores (nome, cnpj, email, telefone, celular,cep, endereco, numero, complemento, bairro, cidade, estado)
+                                values(@nome, @cnpj, @email, @telefone, @celular,@cep, @endereco, @numero, @complemento, @bairro, @cidade, @estado)";
 
                 //2 Passo - Organizar o cmd SQL
                 MySqlCommand executaCmd = new MySqlCommand(sql, conexao);
 
-                executaCmd.Parameters.AddWithValue("@nome",obj.nome);
-                executaCmd.Parameters.AddWithValue("@rg", obj.rg);
-                executaCmd.Parameters.AddWithValue("@cpf", obj.cpf);
+                executaCmd.Parameters.AddWithValue("@nome", obj.nome);
+                executaCmd.Parameters.AddWithValue("@cnpj", obj.cnpj);
                 executaCmd.Parameters.AddWithValue("@email", obj.email);
                 executaCmd.Parameters.AddWithValue("@telefone", obj.telefone);
                 executaCmd.Parameters.AddWithValue("@celular", obj.celular);
@@ -54,29 +53,29 @@ namespace Sistema_de_Vendas.br.com.sistema.DAO
                 conexao.Open();
                 executaCmd.ExecuteNonQuery();
 
-                MessageBox.Show("Cliente Cadastrado com Sucesso!");
+                MessageBox.Show("Fornecedor Cadastrado com Sucesso!");
 
                 //Fechar a conexao com o Banco
                 conexao.Close();
             }
             catch (Exception erro)
-            { 
+            {
                 MessageBox.Show("Erro ao Cadastrar: " + erro);
             }
         }
 
         #endregion
 
-        #region ListarCLientes
+        #region ListarFornecedores
 
-        public DataTable listarClientes()
+        public DataTable listarFornecedores()
         {
             try
             {
                 //1 Passo - Criar DataTable e o comanod MySql
 
-                DataTable tabelaCliente = new DataTable();
-                string sql = "select * from tb_clientes";
+                DataTable tabelaFornecedor = new DataTable();
+                string sql = "select * from tb_fornecedores";
 
                 //2 Passo - Organizar o comando e executar
 
@@ -87,39 +86,38 @@ namespace Sistema_de_Vendas.br.com.sistema.DAO
                 //3 Passo - Criar o MySqlDataAdapter para preencher os dados no DataTable
 
                 MySqlDataAdapter da = new MySqlDataAdapter(executacmd);
-                da.Fill(tabelaCliente);
+                da.Fill(tabelaFornecedor);
 
                 //Fechar a conexao com o Banco
                 conexao.Close();
 
-                return tabelaCliente;          
+                return tabelaFornecedor;
             }
             catch (Exception erro)
             {
                 MessageBox.Show("Erro ao Realizar a Consulta" + erro);
-                return null;    
+                return null;
             }
         }
 
         #endregion
 
-        #region AlterarClientes
-        public void alterarCliente(Cliente obj)
+        #region AlterarFornecedores
+        public void alterarFornecedor(Fornecedor obj)
         {
             try
             {
                 //1 Passo - definir o cmd sql - Insert into
-                string sql = @"update tb_clientes set nome=@nome, rg=@rg, cpf=@cpf, email=@email, telefone=@telefone, celular=@celular, cep=@cep, 
+                string sql = @"update tb_fornecedores set nome=@nome, cnpj=@cnpj, email=@email, telefone=@telefone, celular=@celular, cep=@cep, 
                                endereco=@endereco, numero=@numero, complemento=@complemento, bairro=@bairro, cidade=@cidade, estado=@estado 
                                 where id=@id";
-                                
+
 
                 //2 Passo - Organizar o cmd SQL
                 MySqlCommand executaCmd = new MySqlCommand(sql, conexao);
 
-                executaCmd.Parameters.AddWithValue("@nome", obj.nome);
-                executaCmd.Parameters.AddWithValue("@rg", obj.rg);
-                executaCmd.Parameters.AddWithValue("@cpf", obj.cpf);
+                executaCmd.Parameters.AddWithValue("@nome", obj.nome);           
+                executaCmd.Parameters.AddWithValue("@cnpj", obj.cnpj);
                 executaCmd.Parameters.AddWithValue("@email", obj.email);
                 executaCmd.Parameters.AddWithValue("@telefone", obj.telefone);
                 executaCmd.Parameters.AddWithValue("@celular", obj.celular);
@@ -137,7 +135,7 @@ namespace Sistema_de_Vendas.br.com.sistema.DAO
                 conexao.Open();
                 executaCmd.ExecuteNonQuery();
 
-                MessageBox.Show("Cliente Alterado com Sucesso!");
+                MessageBox.Show("Fornecedor Alterado com Sucesso!");
 
                 //Fechar a conexao com o Banco
                 conexao.Close();
@@ -151,15 +149,14 @@ namespace Sistema_de_Vendas.br.com.sistema.DAO
 
         #endregion
 
+        #region ExcluirFornecedores
 
-        #region ExcluirClientes
-
-        public void excluirCliente(Cliente obj)
+        public void excluirFornecedor(Fornecedor obj)
         {
             try
             {
                 //1 Passo - definir o cmd sql - Insert into
-                string sql = @"delete from tb_clientes where id=@id";
+                string sql = @"delete from tb_fornecedores where id=@id";
 
 
                 //2 Passo - Organizar o cmd SQL
@@ -172,7 +169,7 @@ namespace Sistema_de_Vendas.br.com.sistema.DAO
                 conexao.Open();
                 executaCmd.ExecuteNonQuery();
 
-                MessageBox.Show("Cliente Excluido com Sucesso!");
+                MessageBox.Show("Fornecedor Excluido com Sucesso!");
 
                 //Fechar a conexao com o Banco
                 conexao.Close();
@@ -184,16 +181,16 @@ namespace Sistema_de_Vendas.br.com.sistema.DAO
         }
         #endregion
 
-        #region BuscarClientePorNome
+        #region BuscarFornecedorPorNome
 
-        public DataTable BuscarClientePorNome(string nome)
+        public DataTable BuscarFornecedorPorNome(string nome)
         {
             try
             {
                 //1 Passo - Criar DataTable e o comanod MySql
 
-                DataTable tabelaCliente = new DataTable();
-                string sql = "select * from tb_clientes where nome=@nome";
+                DataTable tabelaFornecedor = new DataTable();
+                string sql = "select * from tb_fornecedores where nome=@nome";
 
                 //2 Passo - Organizar o comando e executar
 
@@ -206,12 +203,12 @@ namespace Sistema_de_Vendas.br.com.sistema.DAO
                 //3 Passo - Criar o MySqlDataAdapter para preencher os dados no DataTable
 
                 MySqlDataAdapter da = new MySqlDataAdapter(executacmd);
-                da.Fill(tabelaCliente);
+                da.Fill(tabelaFornecedor);
 
                 //Fechar a conexao com o Banco
                 conexao.Close();
 
-                return tabelaCliente;
+                return tabelaFornecedor;
             }
             catch (Exception erro)
             {
@@ -219,20 +216,18 @@ namespace Sistema_de_Vendas.br.com.sistema.DAO
                 return null;
             }
         }
-
-
         #endregion
 
-        #region listarClientesPorNome
+        #region listarFornecedoresPorNome
 
-        public DataTable listarClientesPorNome(string nome)
+        public DataTable listarFornecedoresPorNome(string nome)
         {
             try
             {
                 //1 Passo - Criar DataTable e o comanod MySql
 
-                DataTable tabelaCliente = new DataTable();
-                string sql = "select * from tb_clientes where nome like @nome";
+                DataTable tabelaFornecedor = new DataTable();
+                string sql = "select * from tb_fornecedores where nome like @nome";
 
                 //2 Passo - Organizar o comando e executar
 
@@ -245,12 +240,12 @@ namespace Sistema_de_Vendas.br.com.sistema.DAO
                 //3 Passo - Criar o MySqlDataAdapter para preencher os dados no DataTable
 
                 MySqlDataAdapter da = new MySqlDataAdapter(executacmd);
-                da.Fill(tabelaCliente);
+                da.Fill(tabelaFornecedor);
 
                 //Fechar a conexao com o Banco
                 conexao.Close();
 
-                return tabelaCliente;
+                return tabelaFornecedor;
             }
             catch (Exception erro)
             {

@@ -90,7 +90,13 @@ namespace Sistema_de_Vendas.br.com.sistema.VIEWS
 
         }
 
-        private void tabelaCliente_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void tabelaCliente_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            
+
+        }
+
+        private void tabelaCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //Pegar os dados da Linha Selecionada
 
@@ -105,14 +111,10 @@ namespace Sistema_de_Vendas.br.com.sistema.VIEWS
             txtEndereco.Text = tabelaCliente.CurrentRow.Cells[8].Value.ToString();
             txtNumero.Text = tabelaCliente.CurrentRow.Cells[9].Value.ToString();
             txtComp.Text = tabelaCliente.CurrentRow.Cells[10].Value.ToString();
-            txtBairro.Text = tabelaCliente.CurrentRow.Cells[11].Value.ToString();   
+            txtBairro.Text = tabelaCliente.CurrentRow.Cells[11].Value.ToString();
             txtCidade.Text = tabelaCliente.CurrentRow.Cells[12].Value.ToString();
             cbUf.Text = tabelaCliente.CurrentRow.Cells[13].Value.ToString();
-            
-        }
 
-        private void tabelaCliente_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
             tabClientes.SelectedTab = tabPage1;
         }
 
@@ -163,7 +165,7 @@ namespace Sistema_de_Vendas.br.com.sistema.VIEWS
             tabelaCliente.DataSource = dao.listarClientes();
         }
 
-        private void btnPesquisar_Click(object sender, EventArgs e)
+        private void btnPesquisar_Click_1(object sender, EventArgs e)
         {
             string nome = txtPesquisa.Text;
 
@@ -171,7 +173,7 @@ namespace Sistema_de_Vendas.br.com.sistema.VIEWS
 
             tabelaCliente.DataSource = dao.BuscarClientePorNome(nome);
 
-            if(tabelaCliente.Rows.Count == 0)
+            if (tabelaCliente.Rows.Count == 0)
             {
                 //Recarregar o DataGridView
                 tabelaCliente.DataSource = dao.listarClientes();
@@ -186,17 +188,17 @@ namespace Sistema_de_Vendas.br.com.sistema.VIEWS
 
             tabelaCliente.DataSource = dao.listarClientesPorNome(nome);
 
-         
+
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void btnBuscar_Click_1(object sender, EventArgs e)
         {
             //Botao consultar cep 
 
             try
             {
                 string cep = txtCep.Text;
-                string xml = "https://viacep.com.br/ws/"+cep+"/xml/";
+                string xml = "https://viacep.com.br/ws/" + cep + "/xml/";
 
                 DataSet dados = new DataSet();
 
@@ -220,7 +222,22 @@ namespace Sistema_de_Vendas.br.com.sistema.VIEWS
         {
             new Helpers().LimparTela(this);
         }
-    }
+
+        private void txtPesquisa_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPesquisa_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void txtCpf_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+    } 
  }
    
 

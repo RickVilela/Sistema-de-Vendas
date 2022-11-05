@@ -86,13 +86,37 @@
   <ItemGroup>
     <Compile Include="br.com.sistema.CONEXAO\ConnectionFactory.cs" />
     <Compile Include="br.com.sistema.DAO\ClienteDAO.cs" />
+    <Compile Include="br.com.sistema.DAO\FornecedorDAO.cs" />
+    <Compile Include="br.com.sistema.DAO\FuncionarioDAO.cs" />
+    <Compile Include="br.com.sistema.DAO\ProdutoDAO.cs" />
     <Compile Include="br.com.sistema.MODEL\Cliente.cs" />
+    <Compile Include="br.com.sistema.MODEL\Fornecedor.cs" />
+    <Compile Include="br.com.sistema.MODEL\Funcionario.cs" />
     <Compile Include="br.com.sistema.MODEL\Helpers.cs" />
+    <Compile Include="br.com.sistema.MODEL\Produto.cs" />
+    <Compile Include="br.com.sistema.VIEWS\FrmFornecedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="br.com.sistema.VIEWS\FrmFornecedores.Designer.cs">
+      <DependentUpon>FrmFornecedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="br.com.sistema.VIEWS\FrmFuncionarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="br.com.sistema.VIEWS\FrmFuncionarios.Designer.cs">
+      <DependentUpon>FrmFuncionarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="br.com.sistema.VIEWS\FrmClientes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="br.com.sistema.VIEWS\FrmClientes.Designer.cs">
       <DependentUpon>FrmClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="br.com.sistema.VIEWS\FrmProdutos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="br.com.sistema.VIEWS\FrmProdutos.Designer.cs">
+      <DependentUpon>FrmProdutos.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -104,6 +128,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="br.com.sistema.VIEWS\FrmClientes.resx">
       <DependentUpon>FrmClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="br.com.sistema.VIEWS\FrmFornecedores.resx">
+      <DependentUpon>FrmFornecedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="br.com.sistema.VIEWS\FrmFuncionarios.resx">
+      <DependentUpon>FrmFuncionarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="br.com.sistema.VIEWS\FrmProdutos.resx">
+      <DependentUpon>FrmProdutos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
