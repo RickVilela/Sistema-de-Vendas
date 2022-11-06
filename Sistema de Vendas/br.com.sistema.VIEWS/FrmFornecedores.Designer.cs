@@ -447,11 +447,13 @@
             // 
             this.tabelaFornecedores.AllowUserToAddRows = false;
             this.tabelaFornecedores.AllowUserToDeleteRows = false;
+            this.tabelaFornecedores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tabelaFornecedores.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.tabelaFornecedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tabelaFornecedores.Location = new System.Drawing.Point(8, 85);
             this.tabelaFornecedores.Name = "tabelaFornecedores";
             this.tabelaFornecedores.ReadOnly = true;
-            this.tabelaFornecedores.Size = new System.Drawing.Size(816, 228);
+            this.tabelaFornecedores.Size = new System.Drawing.Size(800, 228);
             this.tabelaFornecedores.TabIndex = 7;
             this.tabelaFornecedores.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tabelaFornecedores_CellDoubleClick);
             // 

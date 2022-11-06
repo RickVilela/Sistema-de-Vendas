@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -152,6 +153,194 @@ namespace Sistema_de_Vendas.br.com.sistema.DAO
             {
                 MessageBox.Show("Erro ao Realizar a Consulta" + erro);
                 return null;
+            }
+        }
+
+        #endregion
+
+        #region Listar Produtos por Descricao
+        public DataTable listarProdutosPorDescricao(string descricao)
+        {
+            try
+            {
+                //1 Passo - Criar DataTable e o comanod MySql
+
+                DataTable tabelaProduto = new DataTable();
+                string sql = "SELECT tb_produtos.id as 'Código', tb_produtos.descricao as 'Descrição', tb_produtos.preco as 'Preço',tb_produtos.qtd_estoque as 'Qtd Estoque', tb_fornecedores.nome as 'Fornecedor' FROM tb_produtos join tb_fornecedores on (tb_produtos.for_id = tb_fornecedores.id) where tb_produtos.descricao like @descricao;";
+
+                //2 Passo - Organizar o comando e executar
+
+                MySqlCommand executacmd = new MySqlCommand(sql, conexao);
+                executacmd.Parameters.AddWithValue("@descricao", descricao);
+                conexao.Open();
+                executacmd.ExecuteNonQuery();
+
+                //3 Passo - Criar o MySqlDataAdapter para preencher os dados no DataTable
+
+                MySqlDataAdapter da = new MySqlDataAdapter(executacmd);
+                da.Fill(tabelaProduto);
+
+                //Fechar a conexao com o Banco
+                conexao.Close();
+
+                return tabelaProduto;
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro ao Realizar a Consulta" + erro);
+                return null;
+            }
+        }
+        #endregion
+
+        #region Buscar Produtos Por Descricao
+
+        public DataTable buscaProdutosPorDescricao(string descricao)
+        {
+            try
+            {
+                //1 Passo - Criar DataTable e o comanod MySql
+
+                DataTable tabelaProduto = new DataTable();
+                string sql = "SELECT tb_produtos.id as 'Código', tb_produtos.descricao as 'Descrição', tb_produtos.preco as 'Preço',tb_produtos.qtd_estoque as 'Qtd Estoque', tb_fornecedores.nome as 'Fornecedor' FROM tb_produtos join tb_fornecedores on (tb_produtos.for_id = tb_fornecedores.id) where tb_produtos.descricao = @descricao;";
+
+                //2 Passo - Organizar o comando e executar
+
+                MySqlCommand executacmd = new MySqlCommand(sql, conexao);
+                executacmd.Parameters.AddWithValue("@descricao", descricao);
+                conexao.Open();
+                executacmd.ExecuteNonQuery();
+
+                //3 Passo - Criar o MySqlDataAdapter para preencher os dados no DataTable
+
+                MySqlDataAdapter da = new MySqlDataAdapter(executacmd);
+                da.Fill(tabelaProduto);
+
+                //Fechar a conexao com o Banco
+                conexao.Close();
+
+                return tabelaProduto;
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro ao Realizar a Consulta" + erro);
+                return null;
+            }
+        }
+        #endregion
+
+        #region Metodo Retorna Produto por Codigo
+
+        public Produto retornaProdutoPorCodigo(int id)
+        {
+            try
+            {
+                //1 passo - Criar Comando Mysql
+                string sql = @"select * from tb_produtos where id=@id";
+
+                //2 passo - Organizar e Executar o Comando
+                MySqlCommand executacmd = new MySqlCommand(sql, conexao);
+                executacmd.Parameters.AddWithValue("@id", id);
+                conexao.Open();
+
+                //3 passo - Criar o Mysql DataReader
+                MySqlDataReader rs = executacmd.ExecuteReader();
+
+                if (rs.Read())
+                {
+                    Produto p = new Produto();
+                    p.id = rs.GetInt32("id");
+                    p.descricao = rs.GetString("descricao");
+                    p.preco = rs.GetDecimal("preco");
+
+                    conexao.Close();
+
+                    return p;
+                }
+                else
+                {
+                    conexao.Close();
+
+                    return null ;
+                  
+                }
+              
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro ao Realizar a Consulta" + erro);
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region Metodo Baixar Estoque
+
+        public void baixaEstoque(int idProduto, int qtdEstoque)
+        {
+            try
+            {
+                //1 Passo - Criar comando Sql
+                string sql = @"update tb_produtos set qtd_estoque=@qtd_estoque where id=@id";
+
+                //2 Passo - Organizar o cmd SQL
+                MySqlCommand executaCmd = new MySqlCommand(sql, conexao);
+
+                executaCmd.Parameters.AddWithValue("@qtd_estoque", qtdEstoque);
+                executaCmd.Parameters.AddWithValue("@id", idProduto);
+
+                //3 Passo - Abrir a Conexão e Executar o comando SQL
+
+                conexao.Open();
+                executaCmd.ExecuteNonQuery();
+
+                //Fechar a conexao com o Banco
+                conexao.Close();
+
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Aconteceu o erro: " + erro);
+                conexao.Close();
+            }
+        }
+        #endregion
+
+        #region Retorna Estoque Atual
+            
+           public int retornaEstoqueAtual(int idProduto)
+        {
+            try
+            {
+                string sql = "select qtd_estoque from tb_produtos where id=@id";
+
+                int qtdEstoque = 0;
+
+                //2 Passo - Organizar o cmd SQL
+                MySqlCommand executaCmd = new MySqlCommand(sql, conexao);
+                executaCmd.Parameters.AddWithValue("@id", idProduto);
+
+                //3 Passo - Abrir a Conexão e Executar o comando SQL
+
+                conexao.Open();
+
+                MySqlDataReader rs = executaCmd.ExecuteReader();
+
+                if (rs.Read())
+                {
+                    qtdEstoque = rs.GetInt32("qtd_estoque");
+
+                    conexao.Close();
+                }
+
+                return qtdEstoque;
+
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Aconteceu o erro: " + erro);
+                return 0;
             }
         }
 

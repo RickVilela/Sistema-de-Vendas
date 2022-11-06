@@ -548,6 +548,8 @@
             // 
             this.tabelaFuncionario.AllowUserToAddRows = false;
             this.tabelaFuncionario.AllowUserToDeleteRows = false;
+            this.tabelaFuncionario.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tabelaFuncionario.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.tabelaFuncionario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tabelaFuncionario.Location = new System.Drawing.Point(8, 85);
             this.tabelaFuncionario.Name = "tabelaFuncionario";

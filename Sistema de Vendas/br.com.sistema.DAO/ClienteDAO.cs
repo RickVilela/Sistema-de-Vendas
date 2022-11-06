@@ -151,7 +151,6 @@ namespace Sistema_de_Vendas.br.com.sistema.DAO
 
         #endregion
 
-
         #region ExcluirClientes
 
         public void excluirCliente(Cliente obj)
@@ -262,5 +261,107 @@ namespace Sistema_de_Vendas.br.com.sistema.DAO
 
         #endregion
 
+
+        #region Metodo Retorna Cliente por CPF
+
+        public Cliente retornaClientePorCpf(string cpf)
+        {
+            try
+            {
+                //1 passo - Criar o comando SQL e o objeto Cliente
+                Cliente obj = new Cliente();
+
+                string sql = "select * from tb_clientes where cpf=@cpf";
+
+                //2 Passo - Organizar o comando e executar
+
+                MySqlCommand executacmd = new MySqlCommand(sql, conexao);
+                executacmd.Parameters.AddWithValue("@cpf", cpf);
+
+                conexao.Open();
+                
+                MySqlDataReader rs = executacmd.ExecuteReader();
+
+                if (rs.Read())
+                {
+                    obj.codigo = rs.GetInt32("id");
+                    obj.nome = rs.GetString("nome");
+
+                    conexao.Close();
+
+                    return obj;
+                }
+                else
+                {
+                    MessageBox.Show("Cliente não Encontrado!");
+
+                    conexao.Close();
+
+                    return null;
+                }
+
+               
+            }
+            catch (Exception erro)
+            {
+
+                MessageBox.Show("Erro ao Buscar Cliente: " + erro);
+                return null;
+            }
+        }
+
+
+        #endregion
+
+        #region Metodo Retorna Cliente por Codigo
+
+        public Cliente retornaClientePorCodigo(int codigo)
+        {
+            try
+            {
+                //1 passo - Criar o comando SQL e o objeto Cliente
+                Cliente obj = new Cliente();
+
+                string sql = "select * from tb_clientes where id=@id";
+
+                //2 Passo - Organizar o comando e executar
+
+                MySqlCommand executacmd = new MySqlCommand(sql, conexao);
+                executacmd.Parameters.AddWithValue("@id", codigo);
+
+                conexao.Open();
+
+                MySqlDataReader rs = executacmd.ExecuteReader();
+
+                if (rs.Read())
+                {
+                    obj.cpf = rs.GetString("cpf");
+                    obj.nome = rs.GetString("nome");
+
+                    conexao.Close();
+
+                    return obj;
+                }
+                else
+                {
+                    MessageBox.Show("Cliente não Encontrado!");
+
+                    conexao.Close();
+
+                    return null;
+                }
+
+
+            }
+            catch (Exception erro)
+            {
+
+                MessageBox.Show("Erro ao Buscar Cliente: " + erro);
+                return null;
+            }
+        }
+
+
+        #endregion
     }
 }

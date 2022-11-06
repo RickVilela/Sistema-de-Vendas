@@ -525,6 +525,8 @@
             // 
             this.tabelaCliente.AllowUserToAddRows = false;
             this.tabelaCliente.AllowUserToDeleteRows = false;
+            this.tabelaCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tabelaCliente.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.tabelaCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tabelaCliente.Location = new System.Drawing.Point(8, 85);
             this.tabelaCliente.Name = "tabelaCliente";

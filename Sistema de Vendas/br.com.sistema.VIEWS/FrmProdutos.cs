@@ -119,5 +119,28 @@ namespace Sistema_de_Vendas.br.com.sistema.VIEWS
 
             new Helpers().LimparTela(this);
         }
+
+        private void txtPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            string descricao = "%" + txtPesquisa.Text + "%";
+
+            ProdutoDAO dao = new ProdutoDAO();
+            tabelaProduto.DataSource = dao.listarProdutosPorDescricao(descricao);
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            string descricao = txtPesquisa.Text;
+
+            ProdutoDAO dao = new ProdutoDAO();
+
+            tabelaProduto.DataSource = dao.listarProdutosPorDescricao(descricao);
+
+            if (tabelaProduto.Rows.Count == 0 || txtPesquisa.Text == string.Empty)
+            {
+                MessageBox.Show("Produto não Encontrado!");
+                tabelaProduto.DataSource = dao.listarProdutos();
+            }
+        }
     }
 }

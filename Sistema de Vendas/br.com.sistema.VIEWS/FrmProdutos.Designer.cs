@@ -199,6 +199,8 @@
             // 
             this.tabelaProduto.AllowUserToAddRows = false;
             this.tabelaProduto.AllowUserToDeleteRows = false;
+            this.tabelaProduto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tabelaProduto.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.tabelaProduto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.tabelaProduto.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.tabelaProduto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -220,6 +222,7 @@
             this.btnPesquisar.TabIndex = 6;
             this.btnPesquisar.Text = "Pesquisar";
             this.btnPesquisar.UseVisualStyleBackColor = false;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // txtPesquisa
             // 
@@ -228,6 +231,7 @@
             this.txtPesquisa.Name = "txtPesquisa";
             this.txtPesquisa.Size = new System.Drawing.Size(333, 22);
             this.txtPesquisa.TabIndex = 5;
+            this.txtPesquisa.TextChanged += new System.EventHandler(this.txtPesquisa_TextChanged);
             // 
             // label16
             // 
