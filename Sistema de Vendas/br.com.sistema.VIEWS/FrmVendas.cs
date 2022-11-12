@@ -193,6 +193,11 @@ namespace Sistema_de_Vendas.br.com.sistema.VIEWS
 
         }
 
+        private void txtData_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void FrmVendas_Load(object sender, EventArgs e)
         {
             //Pegando a data atual

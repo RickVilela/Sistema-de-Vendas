@@ -374,6 +374,7 @@
             this.txtData.Size = new System.Drawing.Size(71, 21);
             this.txtData.TabIndex = 13;
             this.txtData.TabStop = false;
+            this.txtData.TextChanged += new System.EventHandler(this.txtData_TextChanged);
             // 
             // label10
             // 

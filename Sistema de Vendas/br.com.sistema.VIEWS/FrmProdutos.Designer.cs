@@ -349,14 +349,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabProdutos;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TextBox txtDesc;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView tabelaProduto;
         private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.TextBox txtPesquisa;
@@ -373,5 +370,7 @@
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.ComboBox cbFornecedor;
         private System.Windows.Forms.Label label6;
+        public System.Windows.Forms.TabControl tabProdutos;
+        public System.Windows.Forms.TabPage tabPage2;
     }
 }

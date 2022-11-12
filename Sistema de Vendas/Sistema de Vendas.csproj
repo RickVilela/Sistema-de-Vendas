@@ -128,6 +128,18 @@
     <Compile Include="br.com.sistema.VIEWS\FrmHistorico.Designer.cs">
       <DependentUpon>FrmHistorico.cs</DependentUpon>
     </Compile>
+    <Compile Include="br.com.sistema.VIEWS\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="br.com.sistema.VIEWS\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="br.com.sistema.VIEWS\FrmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="br.com.sistema.VIEWS\FrmMenu.Designer.cs">
+      <DependentUpon>FrmMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="br.com.sistema.VIEWS\FrmPagamentos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,12 +158,6 @@
     <Compile Include="br.com.sistema.VIEWS\FrmVendas.Designer.cs">
       <DependentUpon>FrmVendas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="br.com.sistema.VIEWS\FrmClientes.resx">
@@ -169,6 +175,12 @@
     <EmbeddedResource Include="br.com.sistema.VIEWS\FrmHistorico.resx">
       <DependentUpon>FrmHistorico.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="br.com.sistema.VIEWS\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="br.com.sistema.VIEWS\FrmMenu.resx">
+      <DependentUpon>FrmMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="br.com.sistema.VIEWS\FrmPagamentos.resx">
       <DependentUpon>FrmPagamentos.cs</DependentUpon>
     </EmbeddedResource>
@@ -179,19 +191,20 @@
       <DependentUpon>FrmVendas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -201,6 +214,68 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Clientes.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fornecedores.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Funcionario.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Historico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Produto.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sistema.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cadastro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\configuracao.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Consultar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forma-de-pagamento.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cadastro2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\configuracao1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Consultar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forma-de-pagamento1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\digital-increasing-bar-graph-with-businessman-hand-overlay.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cliente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\participantes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fornecedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\produtos-de-higiene.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20943477.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\business-partners-handshaking-at-group-meeting-making-project-investment-closeup.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

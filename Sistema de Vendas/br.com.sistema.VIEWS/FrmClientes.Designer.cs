@@ -605,7 +605,6 @@
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnAlterar;
-        private System.Windows.Forms.TabControl tabClientes;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.ComboBox cbUf;
@@ -636,10 +635,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView tabelaCliente;
         private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.TextBox txtPesquisa;
         private System.Windows.Forms.Label label16;
+        public System.Windows.Forms.TabControl tabClientes;
+        public System.Windows.Forms.TabPage tabPage2;
     }
 }

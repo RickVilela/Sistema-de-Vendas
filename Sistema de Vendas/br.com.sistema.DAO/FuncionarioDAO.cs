@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using Sistema_de_Vendas.br.com.sistema.CONEXAO;
 using Sistema_de_Vendas.br.com.sistema.MODEL;
+using Sistema_de_Vendas.br.com.sistema.VIEWS;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -266,8 +267,78 @@ namespace Sistema_de_Vendas.br.com.sistema.DAO
                 return null;
             }
         }
-    
 
+
+        #endregion
+
+        #region Efetuar Login
+
+        public bool EfetuarLogin(string email, String senha)
+        {
+            try
+            {
+                //1 Passo - Criar o comando SQL
+                string sql = @"select * from tb_funcionarios where email = @email and senha = @senha;";
+
+                //2 Passo - Organizar e executar Comando
+
+                MySqlCommand executaCmd = new MySqlCommand(sql, conexao);
+
+                executaCmd.Parameters.AddWithValue("@email", email);
+                executaCmd.Parameters.AddWithValue("@senha", senha);
+
+                //3 Passo - Abrir a Conexão e Executar o comando SQL
+
+                conexao.Open();
+
+                MySqlDataReader reader = executaCmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    //Significa que o Login foi realizado com sucesso!
+
+                    string nivel = reader.GetString("nivel_acesso");
+                    string nome = reader.GetString("nome");
+
+                    MessageBox.Show("Seja bem vindo, " + nome);
+
+                    FrmMenu telaMenu = new FrmMenu();
+
+                    telaMenu.txtUser.Text = nome;
+
+                    if (nivel.Equals("Administrador"))
+                    {        
+                        telaMenu.Show();
+                    }
+                    else if (nivel.Equals("Vendedor"))
+                    {
+                        //Personalizar os Acessos
+                        telaMenu.menuFornecedores.Visible = false;
+                        telaMenu.menuFuncionarios.Visible = false;
+
+                        telaMenu.Show();
+                    }
+
+                   
+                    return true;
+                }
+                else
+                { 
+                    MessageBox.Show("E-mail ou senha incorreto!");
+                    return false;
+                }
+
+                //Fechar a conexao com o Banco
+                conexao.Close();
+
+            }
+            catch (Exception erro)
+            {
+
+                MessageBox.Show("Aconteceu o erro: " + erro);
+                return false;
+            }
+        }
         #endregion
     }
 
